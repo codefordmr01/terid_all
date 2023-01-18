@@ -31,4 +31,9 @@
     <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/color2</item>
     </style>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/color1</item>
+        <item name="android:fontFamily">@font/noto</item>
+    </style>
 </resources>

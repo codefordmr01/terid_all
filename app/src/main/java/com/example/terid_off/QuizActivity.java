@@ -2,12 +2,16 @@ package com.example.terid_off;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -113,13 +117,15 @@ public class QuizActivity extends AppCompatActivity {
                     if (rb1.isChecked() || rb2.isChecked() || rb3.isChecked() || rb4.isChecked()) {
                         checkAnswer();
                     } else {
-                        Toast.makeText(QuizActivity.this, "Please select an answer", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuizActivity.this, "정답을 선택해주세요.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     showNextQuestion();
                 }
             }
         });
+
+
     }
 
     private void showNextQuestion() {
@@ -146,7 +152,16 @@ public class QuizActivity extends AppCompatActivity {
             timeLeftInMillis = COUNTDOWN_IN_MILLIS;
             startCountDown();
         } else {
-            finishQuiz();
+            AlertDialog.Builder alert = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+            alert.setTitle("퀴즈 종료");
+            alert.setMessage("총 점수는 " + score + " 점 입니다.");
+            alert.setPositiveButton("종료", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finishQuiz();
+                }
+            });
+            alert.show();
         }
     }
 
@@ -237,12 +252,13 @@ public class QuizActivity extends AppCompatActivity {
         finish();
     }
 
+
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
             finishQuiz();
         } else {
-            Toast.makeText(this, "Press back again to finish", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "뒤로가기 버튼을 한 번 더 누르시면 퀴즈가 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
 
         backPressedTime = System.currentTimeMillis();
@@ -265,4 +281,5 @@ public class QuizActivity extends AppCompatActivity {
         outState.putBoolean(KEY_ANSWERED, answered);
         outState.putParcelableArrayList(KEY_QUESTION_LIST, questionList);
     }
+
 }
