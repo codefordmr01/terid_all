@@ -34,6 +34,10 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+        <activity android:name=".FormActivity" />
+        <activity android:name=".PartofspeechActivity" />
+        <activity android:name=".TenseActivity" />
+        <activity android:name=".WordorderActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

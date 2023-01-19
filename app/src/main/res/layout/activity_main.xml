@@ -66,7 +66,6 @@
         android:layout_height="25dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="30dp"
-        android:fontFamily="@font/hanguelgodic"
         android:gravity="center"
         android:letterSpacing="-0.07"
         android:text="My Plan"
